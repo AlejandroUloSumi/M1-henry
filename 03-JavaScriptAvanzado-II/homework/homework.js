@@ -19,6 +19,10 @@ function counter() {
   otroContador()      // 2
   otroContador()      // 3
    */
+  var count = 1;
+  return function(){ 
+    return count++              //Acordate del efecto de posicionar el ++ detras de la variable.
+  }
 }
 
 function cacheFunction(cb) {
@@ -41,6 +45,17 @@ function cacheFunction(cb) {
   squareCache(5)    // no volverá a invocar a square, simplemente buscará en la caché cuál es el resultado de square(5) y lo retornará (tip: si usaste un objeto, podés usar hasOwnProperty) 
 
   */
+  var cache= {}:
+
+  return function(param){
+    if(cache.hasOwnProperty(param)){
+      return cache[param];
+    }
+    else{ cache[param] = cb(param)
+    return chache[param]
+    }
+  
+  }
 }
 
 // Bind
@@ -80,7 +95,7 @@ function crearCadena(delimitadorIzquierda, delimitadorDerecha, cadena) {
   return delimitadorIzquierda + cadena + delimitadorDerecha;
 }
 
-let textoAsteriscos;
+let textoAsteriscos; 
 let textoGuiones;
 let textoUnderscore;
 
