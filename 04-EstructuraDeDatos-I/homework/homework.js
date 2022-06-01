@@ -16,6 +16,7 @@ Como ejercicio adicional y completamente opcional, al terminar de resolver este 
 
 function nFactorial(n) {
 
+                              //Primero hacemos las valodaciones correspondientes
   if (n < 0) return -1;       //Podriamos lanzar un error.
   if(n==0 ||n ==1) return 1;
 
@@ -24,6 +25,16 @@ function nFactorial(n) {
 }
 
 function nFibonacci(n) {
+
+  if(n==0) return 0;
+  if(n==1) return 1;
+
+  return nFibonacci(n-1) + nFibonacci(n-2)
+
+
+
+
+
 }
 
 /*
