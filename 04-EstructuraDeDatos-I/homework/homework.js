@@ -32,9 +32,6 @@ function nFibonacci(n) {
   return nFibonacci(n-1) + nFibonacci(n-2)
 
 
-
-
-
 }
 
 /*
@@ -46,8 +43,21 @@ Implementar la clase Queue, sabiendo que es una estructura de tipo FIFO, donde e
 Pueden utilizar class o función constructora.
 */
 
-function Queue() {
+function Queue() {                              //Será el constructor
 
+  this.array = [];
+}
+
+Queue.prototype.size = function(){
+  return this.array.length
+}
+
+Queue.prototype.enqueue = function(elem){
+return this.array.push(elem);
+}
+
+Queue.prototype.dequeue = function(){
+return this.array.shift()
 }
 
 // No modifiquen nada debajo de esta linea
