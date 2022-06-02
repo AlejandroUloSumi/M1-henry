@@ -1,5 +1,7 @@
 "use strict";
 
+const { captureRejections } = require("@11ty/eleventy/src/Util/AsyncEventEmitter");
+
 /*
 Implementar la clase LinkedList, definiendo los siguientes métodos:
   - add: agrega un nuevo nodo al final de la lista;
@@ -11,9 +13,82 @@ Implementar la clase LinkedList, definiendo los siguientes métodos:
   En caso de que la búsqueda no arroje resultados, search debe retornar null.
 */
 
-function LinkedList() {}
+function LinkedList() {
+  this.head = null;
+  this._length=0;                 //usaria esto como variable contador
+}
 
-function Node(value) {}
+function Node (value){
+  this.value = value;
+  this.next = null;
+}
+
+LinkedList.prototype.add = function(data){
+
+  let node =  new Node(data);
+
+  let current = this.head;
+
+  if(!current){
+    this.head = node;                         //ojo aca no va current como pensabamos..
+    return node;
+  }
+
+  while (current.next){
+    current=curent.next;
+  }
+  current.next = node;
+  return node;
+
+}
+
+
+
+LinkedList.prototype.remove = function(){
+
+  let current = this.head;
+  if (current === null) return null;
+
+  else if(current &&  !current.next){             // Para el caso de que contenga un nodo
+    let aux = this.head.value;                    //guardo el contenido del nodo a borrar en una variable aux
+    this.head = null;
+    this._length--;                               //Este length es un acumulador de la cantidad de nodos creados
+    return aux;
+  }
+
+  while (current.next.next){                      //Con este while llego hasta el nodo que es el ante anteultimo al null
+    current=curretn.next;                         //Con esta linea me posicion sobre el ante ultimo nodo
+  }
+
+  let aux = current.next.value;                   //Guardo en aux el value del nodo a borrarse
+  current.next = null;
+  this._length--;                                 //disminuyo el length
+  return aux;
+
+}
+
+
+
+LinkedList.prototype.search = function(value){
+if (this.head === null) return null;
+let current = this.head;
+
+while (current){
+
+  if(current.value === value) return current.value;       /// ojo aca con el ultimo current.value.... yo puse value solo y no funcionó
+
+  else if(typeof value == 'function'){            //Si fuera una funcion la hace ejecutar con el valor de current value. Esta esperara un true o false dependiendo de lo que contenga la funcion. Por ejemplo si se cumple una condicion. 49:43
+    if (value(current.value)){
+      return current.value;
+    }
+  }
+
+  current = current.next;                         //COn este current paso a otro nodo si no se cumple las condiciones de arriba
+}
+return null;
+}
+
+
 
 /*
 Implementar la clase HashTable.
